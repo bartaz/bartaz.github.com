@@ -1,0 +1,45 @@
+html {margin:0;padding:0;border:0;}
+body, span, h1, h2, section {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
+section {display:block;}
+
+body {
+    line-height: 1.4;
+    background: #FFF:
+}
+
+#wrapper {
+    min-height: 390px;
+    width: 960px;
+    margin: 100px auto 20px;
+    background: url(me.png) no-repeat 110% 0;
+    font-family: 'IM Fell DW Pica', times, serif;
+}
+
+h1 {
+  line-height: 1.4;
+  font-size: 130px;
+  text-transform: lowercase;
+  margin: 0 10px;
+}
+
+h1 .firstname { color: #777; }
+h1 .lastname { color: #000; }
+
+h1 .nbsp, h1 .firstname .sz { display: none; }
+
+.firstname:hover .sz { display: inline }
+span.firstname:hover ~ .nbsp ~ span.lastname > span.sz { display: none }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+
+  h1:hover .firstname .sz { display: inline }
+  h1:hover .lastname .sz { display: none }
+
+}
+
+h2 {
+  font-size: 43px;
+  margin: 0 10px;
+}
+
+.js h1, .js h2 { display: none }
