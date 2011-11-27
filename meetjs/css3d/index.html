@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CSS 3D transforms by Bartek Szopka</title>
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:700|Ubuntu+Mono|Crimson+Text:400,700,400italic" rel="stylesheet" />
+    <link href="style.min.css" rel="stylesheet" />
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script src="script.min.js"></script>
+    <script>
+        (function(d,ua){
+            if (ua.indexOf('chrome') > -1) { d.className += " chrome "; }
+            if (ua.indexOf('safari') > -1 && ua.indexOf("mobile") === -1) { d.className += " safari "; }
+        })(document.documentElement, navigator.userAgent.toLowerCase());
+    </script>
+</head>
+<body>
+
+<aside id="legend">
+    <p class="not-supported">This presentation extensively uses features available only in Webkit browser and won't work properly in browser other than Chrome or desktop Safari. Sorry.</p>
+    <p>Use arrow keys and space to change "slides". Double-click on disabled value to enable it, use the sliders to change values. Discover the rest on your own ;)</p>
+</aside>
+
+<div id="view">
+
+<div id="canvas" class="scale"><div class="rotate"><div class="translate">
+
+<div id="title" class="step" data-x="0" data-y="0" data-rotate="0" data-scale="1">
+    <h1><span class="short">a very short introduction to</span> CSS<span class="d3">3D</span> <span class="transforms">transforms</span></h1>
+</div>
+
+<div id="support" class="step" data-x="-640" data-y="0" data-rotate="30" data-scale="0.4">
+    <h2>browser support</h2>
+    <div class="current">
+        <div class="safari browser"><span class="prefix"><code>-webkit</code></span></div>
+        <div class="chrome browser"><span class="prefix"><code>-webkit</code></span></div>
+        <div class="android browser"><span class="prefix"><code>-webkit</code></span></div>
+    </div>
+    <div class="future">
+        <div class="firefox browser"><span class="prefix"><code>-moz</code></span> <span class="version">10&nbsp;</span></div>
+        <div class="ie browser"><span class="prefix"><code>-ms</code></span> <span class="version">10&nbsp;</span></div>
+        <div class="opera browser"><span class="version">?&nbsp;</span></div>
+    </div>
+</div>
+
+<div id="transforms2d" class="step" data-x="-620" data-y="500" data-rotate="90" data-scale="0.5">
+    <h2>2d transforms</h2>
+    
+    <div class="face target">
+        2D
+        <span class="axis x"></span>
+        <span class="axis y"></span>
+    </div>
+
+    <code class="snippet">
+        transform:
+        <span class="code" data-property="-webkit-transform">
+        <span class="switch disabled">translate(200px,100px)</span><br/>
+        <span class="indent">          </span>
+        <span class="switch">rotate(45deg)</span><br/>
+        <span class="indent">          </span>
+        <span class="switch disabled">scale(2)</span><br/>
+        <span class="indent">          </span>
+        <span class="switch disabled">skew(30deg)</span><br/>
+        <span class="indent">          </span>
+        <span class="switch disabled">matrix(-1,0,0,1,0,0)</span></span>;
+    </code>
+</div>
+
+<div id="transforms3d" class="step" data-x="-30" data-y="540" data-rotate="190" data-scale="0.6">
+
+    <h2>3d transforms</h2>
+    
+    <div class="face target">
+        3D
+        <span class="axis x"></span>
+        <span class="axis y"></span>
+        <span class="axis z"></span>
+    </div>
+    
+    <code class="snippet">
+        transform: <br/>
+        <span class="code" data-property="-webkit-transform">
+            <span class="indent">   </span>
+            <label for="transform3d-perspective-slider" class="switch slider">
+                perspective(<span class="val">600</span>px)
+                <input type="range" id="transform3d-perspective-slider" min="200" max="2000" value="600" />
+            </label>
+            <br/>
+        
+            <span class="indent">   </span>
+            <label for="transform3d-translateX-slider" class="switch disabled slider">
+                translateX(<span class="val">400</span>px)
+                <input type="range" id="transform3d-translateX-slider" min="-500" max="500" value="300" />
+            </label>
+            <label for="transform3d-translateY-slider" class="switch slider">
+                translateY(<span class="val">100</span>px)
+                <input type="range" id="transform3d-translateY-slider" min="-200" max="200" value="100" />
+            </label>
+            <label for="transform3d-translateZ-slider" class="switch disabled slider">
+                translateZ(<span class="val">100</span>px)
+                <input type="range" id="transform3d-translateZ-slider" min="-500" max="500" value="100" />
+            </label>
+            <br/>
+            
+            
+            <span class="indent">   </span>
+            <label for="transform3d-rotateX-slider" class="switch slider">
+                rotateX(<span class="val">60</span>deg)
+                <input type="range" id="transform3d-rotateX-slider" min="0" max="360" value="60" />
+            </label> 
+            <label for="transform3d-rotateY-slider" class="switch disabled slider">
+                rotateY(<span class="val">90</span>deg)
+                <input type="range" id="transform3d-rotateY-slider" min="0" max="360" value="90" />
+            </label>
+            <label for="transform3d-rotateZ-slider" class="switch slider">
+                rotateZ(<span class="val">30</span>deg)
+                <input type="range" id="transform3d-rotateZ-slider" min="0" max="360" value="30" />
+            </label>
+            <br/>
+        
+            <span class="indent">   </span>
+            <label for="transform3d-rotate3d-slider" class="switch disabled slider">
+                rotate3d(1,1,0,<span class="val">60</span>deg)
+                <input type="range" id="transform3d-rotate3d-slider" min="0" max="360" value="60" />
+            </label>
+            <br/>
+        
+            <span class="indent">   </span>
+            <label for="transform3d-scaleX-slider" class="switch disabled slider">
+                scaleX(<span class="val">0.5</span>)
+                <input type="range" id="transform3d-scaleX-slider" min="-10" max="20" value="5" step="1" data-divider="10" data-pad="4"/>
+            </label>
+            <label for="transform3d-scaleY-slider" class="switch disabled slider">
+                scaleY(<span class="val">0.5</span>)
+                <input type="range" id="transform3d-scaleY-slider" min="-10" max="20" value="5" step="1" data-divider="10" />
+            </label>
+            <label for="transform3d-scaleZ-slider" class="switch disabled slider">
+                scaleZ(<span class="val">0.5</span>)<input type="range" id="transform3d-scaleZ-slider" min="-10" max="20" value="5" step="1" data-divider="10" /></label></span>;
+    </code>
+</div>
+
+<div id="perspective" class="step" data-x="450" data-y="250" data-rotate="100" data-scale="0.25">
+    <h2>perspective</h2>
+    
+    <div class="scene target">
+        <div class="cross"></div>
+        
+        <div class="box">
+            <div class="top"></div>
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="bottom"></div>
+        </div>
+        
+        <div class="box">
+            <div class="top"></div>
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="bottom"></div>
+        </div>
+    </div>
+
+<code class="snippet">
+    <label for="perspective-slider" class="slider">
+    perspective: 
+    <span class="code" data-property="-webkit-perspective">
+        <span class="val">1000</span>px<input id="perspective-slider" type="range" max="2000" min="200" value="1000"/></span>;
+    </label><br/>
+<span class="origin">perspective-origin: <span class="value">50% 50%</span>;</span>
+</code>
+
+</div>
+
+<div id="transforms3d-box" class="step" data-x="670" data-y="700" data-rotate="10" data-scale="0.6">
+  
+    <div class="cube target">
+        <div class="face">front</div>
+        <div class="face">back</div>
+        <div class="face">left</div>
+        <div class="face">right</div>
+        <div class="face">top</div>
+        <div class="face">bottom</div>
+    </div>
+
+<div class="flip">
+<code class="snippet">
+    .box { <br/>
+    <span class="indent">   </span>
+    transform: 
+    <span class="code" data-property="-webkit-transform">
+        <label for="transform3d-box-perspective-slider" class="switch slider">
+            perspective(<span class="val">600</span>px)
+            <input type="range" id="transform3d-box-perspective-slider" min="200" max="2000" value="600" />
+        </label>
+        <br/>
+        
+        <span class="indent">       </span>
+        <label for="transform3d-box-rotateX-slider" class="switch slider">
+            rotateX(<span class="val">330</span>deg)
+            <input type="range" id="transform3d-box-rotateX-slider" min="0" max="360" value="330" />
+        </label> 
+        <label for="transform3d-box-rotateY-slider" class="switch slider">
+            rotateY(<span class="val">320</span>deg)
+            <input type="range" id="transform3d-box-rotateY-slider" min="0" max="360" value="320" />
+        </label>
+        <label for="transform3d-box-rotateZ-slider" class="switch slider">
+            rotateZ(<span class="val">0</span>deg)<input type="range" id="transform3d-box-rotateZ-slider" min="0" max="360" value="0" /></label></span>;
+    <br/>
+    <span class="indent">   </span>
+    transform-style: <span class="code" data-property="-webkit-transform-style"><span class="switch">preserve-3d</span></span>;
+        <span class="comment">/* default: `flat` */</span><br/>
+    }<br/><br/>
+    .face {<br/>
+        <span class="indent">   </span>
+        <label for="transform3d-box-opacity-slider" class="slider">
+            opacity: <span class="code" data-property="opacity" data-selector=".face"><span class="val">1.0</span><input type="range" id="transform3d-box-opacity-slider" min="1" max="10" value="10" step="1" data-divider="10" /></span>;
+        </label><br/>
+
+    <span class="indent">   </span>
+    backface-visibility: <span class="code" data-property="-webkit-backface-visibility" data-selector=".face"><span class="switch disabled">hidden</span></span>;
+        <span class="comment">/* default: `visible` */</span><br/>
+    }
+</code>
+<code class="snippet back">
+    &lt;div class="cube"&gt;<br/>
+    <span class="indent">   </span>&lt;div class="face"&gt;front&lt;/div&gt;<span class="indent"> </span>
+        <span class="comment">translateZ( 100px)</span><br/>
+    <span class="indent">   </span>&lt;div class="face"&gt;back&lt;/div&gt;<span class="indent">  </span>
+        <span class="comment">translateZ(-100px) rotateY(-180deg)</span><br/>
+    <span class="indent">   </span>&lt;div class="face"&gt;left&lt;/div&gt;<span class="indent">  </span>
+        <span class="comment">translateX(-100px) rotateY(-90deg)</span><br/>
+    <span class="indent">   </span>&lt;div class="face"&gt;right&lt;/div&gt;<span class="indent"> </span>
+        <span class="comment">translateX( 100px) rotateY( 90deg)</span><br/>
+    <span class="indent">   </span>&lt;div class="face"&gt;top&lt;/div&gt;<span class="indent">   </span>
+        <span class="comment">translateY(-100px) rotateX( 90deg)</span><br/>
+    <span class="indent">   </span>&lt;div class="face"&gt;bottom&lt;/div&gt;<span class="indent"></span>
+        <span class="comment">translateY( 100px) rotateX(-90deg)</span><br/>
+    &lt;/div&gt;
+</code>
+</div>
+
+</div>
+
+<div id="remember" class="step" data-x="750" data-y="70" data-rotate="30" data-scale="0.4">
+    <h2>remember</h2>
+    
+    <h3>this is <b>not</b> a <b>3D engine</b></h3>
+    
+    <ul>
+        <li>there is <b>no single coordinate system</b></li>
+        <li>there is <b>no camera, light, etc.</b></li>
+        <li>complex scenes are <b>hard to maintain</b></li>
+        <li>there are <b>rendering order</b> issues</li>
+        <li><b>hardware accelerated</b> layers are not always good</li>
+    </ul>
+</div>
+
+
+<div id="end" class="step" data-x="0" data-y="500" data-rotate="0" data-scale="2">
+    <i>by</i><br/>
+    <span class="name">Bartek Szopka</span><br/>
+    <a href="http://twitter.com/bartaz" class="author">@bartaz</a> 
+</div>
+
+</div></div></div><!-- #canvas .scale > .rotate > .translate -->
+</div><!-- #view -->
+
+</body>
+</html>
