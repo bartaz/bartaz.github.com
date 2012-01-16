@@ -54,6 +54,8 @@ $(function(){
         },50);
     }
     
+    $(".switch").attr("title", "Double click to toggle");
+    
     $(document)
         .on("dblclick", ".switch", function () {
             $(this).toggleClass("disabled");
