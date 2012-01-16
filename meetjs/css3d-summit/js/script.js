@@ -48,25 +48,10 @@ $(function(){
     // updates target element styles property
     // when code is changed (by clicking or sliders)
     var updateTarget = function ($input) {
-        clearTimeout(t);
-        t = setTimeout(function(){
+        clearTimeout(tid);
+        tid = setTimeout(function(){
             codeToTarget($input)
         },50);
-    }
-    
-    var updateTargeta = function ( $input ) {
-        clearTimeout(tid);
-        
-        tid = setTimeout(function () {
-            var code = $input.closest(".code").clone().find(".disabled,.ignore").remove().end();
-            
-            if (code.data("property")) {
-                var text = code.text().trim().replace(/\n/ig," ");
-                var target = $input.closest(".step").find( ".target " + (code.data("selector") || "") );
-
-                target.css( pfx( code.data("property") ), text || "" )
-            }
-        }, 50);
     }
     
     $(document)
