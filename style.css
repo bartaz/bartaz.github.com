@@ -43,3 +43,68 @@ h2 {
 }
 
 .js h1, .js h2 { display: none }
+
+
+
+span.lastname > .sz {
+    -webkit-animation: neon 5s infinite alternate;
+    -moz-animation:    neon 5s infinite alternate;
+    -ms-animation:     neon 5s infinite alternate;
+    -o-animation:      neon 5s infinite alternate;
+    animation:         neon 5s infinite alternate;
+}
+
+@-webkit-keyframes neon {
+     0%, 19% { color: #000 }        
+    20%, 29% { color: #777 }
+    30%, 34% { color: #000 }
+    35%, 44% { color: #777 }
+    45%, 59% { color: #000 }
+    60%, 79% { color: #777 }
+    80%, 89% { color: #000 }
+    90%,100% { color: #777 }
+}
+
+@-moz-keyframes neon {
+     0%, 19% { color: #000 }        
+    20%, 29% { color: #777 }
+    30%, 34% { color: #000 }
+    35%, 44% { color: #777 }
+    45%, 59% { color: #000 }
+    60%, 79% { color: #777 }
+    80%, 89% { color: #000 }
+    90%,100% { color: #777 }
+}
+
+@-ms-keyframes neon {
+     0%, 19% { color: #000 }        
+    20%, 29% { color: #777 }
+    30%, 34% { color: #000 }
+    35%, 44% { color: #777 }
+    45%, 59% { color: #000 }
+    60%, 79% { color: #777 }
+    80%, 89% { color: #000 }
+    90%,100% { color: #777 }
+}
+
+@-o-keyframes neon {
+     0%, 19% { color: #000 }        
+    20%, 29% { color: #777 }
+    30%, 34% { color: #000 }
+    35%, 44% { color: #777 }
+    45%, 59% { color: #000 }
+    60%, 79% { color: #777 }
+    80%, 89% { color: #000 }
+    90%,100% { color: #777 }
+}
+
+@-ms-keyframes neon {
+     0%, 19% { color: #000 }        
+    20%, 29% { color: #777 }
+    30%, 34% { color: #000 }
+    35%, 44% { color: #777 }
+    45%, 59% { color: #000 }
+    60%, 79% { color: #777 }
+    80%, 89% { color: #000 }
+    90%,100% { color: #777 }
+}
